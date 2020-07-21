@@ -1,20 +1,41 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-var a int = 3
-var b int = 7
-var c bool = true
-var s string = "abc"
+const (
+	cpp = iota
+	java
+	python
+	golang
+)
+const (
+	b = 1 << (10 * iota)
+	kb
+	mb
+	gb
+	tb
+	pb
+)
 
 func variable() {
-	var a int = 3
-	var s string = "abc"
-	var b, c int = 5, 6
+}
+
+func triangle() {
+	var a, b int = 3, 4
+	var c int
+
+	c = int(math.Sqrt(float64(a*a + b*b)))
+	fmt.Println(c)
 }
 
 func main() {
 	fmt.Println("Hello World!")
 
-	fmt.Println(bbb)
+	triangle()
+
+	fmt.Println(cpp, java, python, golang)
+	fmt.Println(b, kb, mb, gb, tb, pb)
 }
