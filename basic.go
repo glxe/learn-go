@@ -71,7 +71,15 @@ func sum(numbers ...int) int {
 	}
 	return s
 }
+func printArray(arr [5]int) {
+	for i := range arr {
+		fmt.Println(arr[i])
+	}
+}
 
+func updateSlice(s []int) {
+	s[0] = 100
+}
 func main() {
 	fmt.Println("Hello World!")
 
@@ -93,4 +101,67 @@ func main() {
 	}, 3, 4))
 
 	fmt.Println(sum(1, 2, 3, 4, 5))
+	fmt.Println("--------------------------------------------------")
+
+	var arr1 [5]int
+	arr2 := [3]int{1, 2, 3}            // 如果是 := 方式赋值，则必须要制定数组里的值
+	arr3 := [...]int{9, 8, 7, 6, 5, 4} // 可以让编译器自己推断长度，但是必须加...
+	var gride [5][6]int                // 二维数组
+	fmt.Println(arr1, arr2, arr3)
+	fmt.Println(gride)
+
+	for i := 0; i < len(arr3); i++ {
+		fmt.Println(arr3[i])
+	}
+
+	for i := range arr3 {
+		fmt.Println(arr3[i])
+	}
+
+	for i, v := range arr3 {
+		fmt.Println(i, v)
+	}
+	for _, v := range arr3 {
+		fmt.Println(v)
+	}
+	fmt.Println("--------------------------------------------------")
+
+	printArray(arr1)
+	fmt.Println("--------------------------------------------------")
+
+	arr := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	fmt.Println("arr[2:6] = ", arr[2:6])
+	fmt.Println("arr[2:] = ", arr[2:])
+	s1 := arr[2:6]
+	fmt.Println("arr[2:6] = ", s1)
+	s2 := arr[:]
+	fmt.Println("arr[:] = ", s2)
+	fmt.Println("--------------------------------------------------")
+
+	fmt.Println("after updateSlice (s1)")
+	updateSlice(s1)
+	fmt.Println(s1)
+	fmt.Println(arr)
+
+	fmt.Println("after updateSlice (s2)")
+	updateSlice(s2)
+	fmt.Println(s2)
+	fmt.Println(arr)
+
+	fmt.Println("--------------------------------------------------")
+
+	arr11 := [...]int{0, 1, 2, 3, 4, 5, 6, 7}
+	s11 := arr11[2:6]
+	s22 := s11[3:5]
+	fmt.Printf("s11 = %v, len(s11) = %d, cap(s11) = %d\n",
+		s11, len(s11), cap(s11))
+	fmt.Printf("s22 = %v, len(s22) = %d, cap(s22) = %d\n",
+		s22, len(s22), cap(s22))
+
+	s33 := append(s22, 10)
+	s44 := append(s33, 11)
+	s55 := append(s44, 12)
+	fmt.Println("s33, s44, s55 =", s33, s44, s55)
+	fmt.Println("arr11 =", arr11)
 }
